@@ -1,0 +1,64 @@
+Just some notes!
+
+export ORIGIN_URL=""
+export DATABASE_URL=""
+export JWT_KEY=""
+export REDIS_SESSION_DATABASE_HOST=""
+export REDIS_SESSION_DATABASE_PORT=""
+export REDIS_SESSION_DATABASE_USER=""
+export REDIS_SESSION_DATABASE_PASS=""
+export GOOGLE_TICK_RECAPTCHA_SECRET_KEY=""
+export GOOGLE_INVISIBLE_RECAPTCHA_SECRET_KEY=""
+
+          ORIGIN_URL: !Ref OriginUrl
+          DATABASE_URL: !Ref DatabaseUrl
+          JWT_KEY: !Ref JWTKey
+          REDIS_SESSION_DATABASE_HOST: !Ref RedisSessionDatabaseHost
+          REDIS_SESSION_DATABASE_PORT: !Ref RedisSessionDatabasePort
+          REDIS_SESSION_DATABASE_USER: !Ref RedisSessionDatabaseUser
+          REDIS_SESSION_DATABASE_PASS: !Ref RedisSessionDatabasePass
+          GOOGLE_TICK_RECAPTCHA_SECRET_KEY: !Ref GoogleTickRECAPTCHASecretKey
+          GOOGLE_INVISIBLE_RECAPTCHA_SECRET_KEY: !Ref GoogleInvisibleRECAPTCHASecretKey
+
+/* EOF COPY PASTE */
+
+/* CORS */
+export ORIGIN_URL=""
+
+/* Neon Postgres */
+export DATABASE_URL=""
+
+/* SECRET! */
+export JWT_KEY=""
+
+/* UPSTASH */
+export REDIS_SESSION_DATABASE_HOST=""
+export REDIS_SESSION_DATABASE_PORT=""
+export REDIS_SESSION_DATABASE_USER=""
+export REDIS_SESSION_DATABASE_PASS=""
+
+/* GOOGLE RECAPTCHA */
+export GOOGLE_TICK_RECAPTCHA_SECRET_KEY=""
+export GOOGLE_INVISIBLE_RECAPTCHA_SECRET_KEY=""
+
+TICK reCAPTCHA HTML site key: 
+TICK reCAPTCHA secret key: 
+INVISIBLE reCAPTCHA HTML site key: 
+INVISIBLE reCAPTCHA secret key: 
+
+/* OTHER */
+GET /get-user-id
+POST /sign-out
+POST /login
+POST /sign-up
+POST /refresh-tokens
+OPTIONS /
+
+aws apigatewayv2 update-stage --api-id ?????? --stage-name $default --route-settings "{\"POST /refresh-tokens\":{\"ThrottlingBurstLimit\":100,\"ThrottlingRateLimit\":2000}}"
+
+cargo lambda build --release --compiler cargo
+cargo lambda build --release
+
+/* IMPORTANT */
+ses_bounce_queue set lambda trigger to ses_complaint_bounce_handler
+bulk_email_queue set lambda trigger to ses_bulk_sender

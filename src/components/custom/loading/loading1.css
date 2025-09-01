@@ -1,0 +1,75 @@
+:root {
+  --c1: #ffffff;
+  --c2: #ffffff;
+  --c3: #ffffff;
+  --c4: #ffffff;
+}
+.pl4 {
+  justify-content: space-between;
+}
+.pl4__a,
+.pl4__b,
+.pl4__c,
+.pl4__d {
+  width: 0.8em;
+  height: 0.8em;
+}
+.pl4 {
+  align-items: flex-end;
+}
+.pl4__a,
+.pl4__b,
+.pl4__c,
+.pl4__d {
+  animation: bounce4 2s linear infinite;
+  transform-origin: 50% 100%;
+}
+.pl4 {
+  display: flex;
+  margin: 1.5em;
+  width: 12em;
+  height: 12em;
+}
+.pl4__a {
+  background: var(--c1);
+}
+.pl4__b {
+  background: var(--c2);
+  animation-delay: 0.1s;
+}
+.pl4__c {
+  background: var(--c3);
+  animation-delay: 0.2s;
+}
+
+.pl4__d {
+  background: var(--c4);
+  animation-delay: 0.3s;
+}
+@keyframes bounce4 {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+    transform: scaleY(1);
+    animation-timing-function: ease-out;
+  }
+  10% {
+    transform: scaleY(8);
+    animation-timing-function: ease-in;
+  }
+  30% {
+    transform: scaleY(4);
+    animation-timing-function: ease-in;
+  }
+  50% {
+    transform: scaleY(2);
+    animation-timing-function: ease-in;
+  }
+  70% {
+    transform: scaleY(1.5);
+    animation-timing-function: ease-in;
+  }
+}

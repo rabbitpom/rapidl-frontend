@@ -1,0 +1,1 @@
+We've received a request to add you to our newsletter mailing list. To confirm your subscription, kindly visit the following link, {{confirmationurl}}.\r\n\r\nYou're receiving this email because your address was used to sign up for our newsletter. If this was not you, please disregard this message.

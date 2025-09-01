@@ -1,0 +1,15 @@
+declare module "*.module.css";
+declare var DevelopmentMode: boolean;
+declare var CopyrightYear: number;
+declare var SocialTwitter: string;
+declare var SocialLinkedIn: string;
+declare var SocialInstagram: string;
+declare var Method: string;
+declare var HostDomain: string;
+declare var APIHostDomain: string;
+declare var HostURL: string;
+declare var APIHostURL: string;
+declare var TickReCaptchaSiteKey: string;
+declare var InvisibleReCaptchaSiteKey: string;
+declare var DISABLE_TOKEN_LOG: boolean;
+declare var UmamiWebsiteId: string;

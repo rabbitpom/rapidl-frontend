@@ -1,0 +1,1 @@
+Re: rapidl ticket {{ticketid}}\r\n\r\nDear {{name}},\r\n\r\n{{message}}\r\n\r\nIf you have any additional information or details to add, please reply to this email.\r\n\r\nBest regards,\r\n{{supportname}}\r\nrapidl Team\r\n\r\nYou're receiving this email because your address was used to submit a contact request. If this was not you, please disregard this message.

@@ -1,0 +1,14 @@
+.light-navi-bar {
+  background-color: var(--ontop-background);
+  transition: padding 0.3s ease-out, border-radius 0.3s ease-out;
+}
+.dark-navi-bar {
+  background-color: var(--ontop-background);
+  transition: padding 0.3s ease-out, border-radius 0.3s ease-out;
+}
+.light-navi-bar-light {
+  background-color: var(--ontop-background-light);
+}
+.dark-navi-bar-light {
+  background-color: var(--ontop-background-light);
+}

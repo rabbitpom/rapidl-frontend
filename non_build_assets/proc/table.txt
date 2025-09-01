@@ -1,0 +1,135 @@
+CREATE TYPE public.supportwhoareyou AS ENUM (
+    'student',
+    'teacher',
+    'company',
+    'organisation',
+    'unknown'
+);
+CREATE TYPE public.supportticketstate AS ENUM (
+    'unclaimed',
+    'claimed',
+    'closed'
+);
+CREATE TYPE public.generation_status AS ENUM (
+    'working',
+    'success',
+    'failed',
+    'deleting',
+    'waiting'
+);
+CREATE TABLE problematicemails (
+    hash TEXT PRIMARY KEY,
+    count INT NOT NULL DEFAULT 0,
+    nextreset TIMESTAMP WITHOUT TIME ZONE NOT NULL
+);
+CREATE TABLE public.supportticketmessages (
+    id integer NOT NULL,
+    ticketid integer NOT NULL,
+    message text NOT NULL,
+    PRIMARY KEY (id),
+    CONSTRAINT fk_ticket FOREIGN KEY (ticketid)
+        REFERENCES public.supporttickets (id)
+        ON DELETE CASCADE
+);
+CREATE SEQUENCE public.supportticketmessages_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ALTER SEQUENCE public.supportticketmessages_id_seq OWNED BY public.supportticketmessages.id;
+ALTER TABLE ONLY public.supportticketmessages 
+    ALTER COLUMN id SET DEFAULT nextval('public.supportticketmessages_id_seq'::regclass);
+CREATE TABLE public.supporttickets (
+    id integer NOT NULL,
+    name text NOT NULL,
+    email character varying(320) NOT NULL,
+    summary text NOT NULL,
+    wau public.supportwhoareyou,
+    state public.supportticketstate DEFAULT 'unclaimed' NOT NULL,
+    claimedbyname text,
+    claimedby bigint,
+    createdat timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    lastchanged timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    PRIMARY KEY (id)
+    CONSTRAINT fk_claimedby FOREIGN KEY (claimedby)
+        REFERENCES public.users (userid);
+);
+CREATE TABLE public.allocatedcredits (
+    creditid integer NOT NULL,
+    userid bigint NOT NULL,
+    credits integer NOT NULL,
+    expireat timestamp without time zone NOT NULL
+);
+CREATE SEQUENCE public.allocatedcredits_creditid_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ALTER SEQUENCE public.allocatedcredits_creditid_seq OWNED BY public.allocatedcredits.creditid;
+CREATE TABLE public.generation (
+    userid bigint,
+    id bigint NOT NULL,
+    status public.generation_status,
+    createdat timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    finishedon timestamp without time zone,
+    jobid uuid,
+    creditsused smallint,
+    category character varying,
+    options text,
+    displayname text
+);
+CREATE SEQUENCE public.generation_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ALTER SEQUENCE public.generation_id_seq OWNED BY public.generation.id;
+CREATE SEQUENCE public.supporttickets_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ALTER SEQUENCE public.supporttickets_id_seq OWNED BY public.supporttickets.id;
+CREATE TABLE public.users (
+    userid bigint NOT NULL,
+    username character varying(16) NOT NULL,
+    email character varying(320) NOT NULL,
+    emailverified boolean,
+    bcryptpass bytea,
+    createdat timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
+    supportprivilege boolean DEFAULT false
+);
+CREATE SEQUENCE public.users_userid_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ALTER SEQUENCE public.users_userid_seq OWNED BY public.users.userid;
+ALTER TABLE ONLY public.allocatedcredits ALTER COLUMN creditid SET DEFAULT nextval('public.allocatedcredits_creditid_seq'::regclass);
+ALTER TABLE ONLY public.generation ALTER COLUMN id SET DEFAULT nextval('public.generation_id_seq'::regclass);
+ALTER TABLE ONLY public.users ALTER COLUMN userid SET DEFAULT nextval('public.users_userid_seq'::regclass);
+ALTER TABLE ONLY public.supporttickets ALTER COLUMN id SET DEFAULT nextval('public.supporttickets_id_seq'::regclass);
+ALTER TABLE ONLY public.allocatedcredits
+    ADD CONSTRAINT allocatedcredits_pkey PRIMARY KEY (creditid);
+ALTER TABLE ONLY public.generation
+    ADD CONSTRAINT generation_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.generation
+    ADD CONSTRAINT unique_jobid UNIQUE (jobid);
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (userid);
+CREATE UNIQUE INDEX idx_email ON public.users USING btree (email);
+CREATE INDEX idx_expireat ON public.allocatedcredits USING btree (expireat);
+CREATE INDEX idx_username ON public.users USING btree (username);
+CREATE INDEX idx_users_supportprivilege_true ON users (supportprivilege) WHERE supportprivilege = true;
+ALTER TABLE ONLY public.allocatedcredits
+    ADD CONSTRAINT allocatedcredits_userid_fkey FOREIGN KEY (userid) REFERENCES public.users(userid) ON DELETE CASCADE;
+ALTER TABLE ONLY public.generation
+    ADD CONSTRAINT generation_userid_fkey FOREIGN KEY (userid) REFERENCES public.users(userid) ON DELETE CASCADE;

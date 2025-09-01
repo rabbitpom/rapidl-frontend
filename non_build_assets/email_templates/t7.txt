@@ -1,0 +1,1 @@
+Email Failure.\r\nWe couldn't process your email for the following reasons(s):\r\n{{reasons}}\r\n\r\n{instruction}\r\n\r\nYou're receiving this email because you sent a message to our support system, and it couldn't be recognised.

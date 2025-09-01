@@ -1,0 +1,40 @@
+.navigation-button {
+  height: 100%;
+  font-size: inherit;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  background: none;
+  border-style: none;
+  padding: 0 1rem 0 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  --nav-ref-fill: hsl(var(--primary));
+  stroke: var(--nav-ref-fill);
+  fill: var(--nav-ref-fill);
+  display: flex;
+  align-items: center;
+}
+.navigation-button svg {
+  stroke: inherit;
+  fill: inherit;
+  transition: transform 0.3s ease;
+  transform: translate(0, -2px);
+}
+.navigation-button:hover {
+  background-color: hsl(var(--primary));
+  --nav-ref-fill: black;
+  stroke: var(--nav-ref-fill);
+  fill: var(--nav-ref-fill);
+}
+.navigation-button:hover svg {
+  transform: rotate(-180deg) translate(0, -2px);
+}
+.navigation-button-force-enable {
+  background-color: hsl(var(--primary)) !important;
+  --nav-ref-fill: black;
+  stroke: var(--nav-ref-fill) !important;
+  fill: var(--nav-ref-fill) !important;
+}
+.svg-force-enable {
+  transform: rotate(-180deg) translate(0, 0px) !important;
+}

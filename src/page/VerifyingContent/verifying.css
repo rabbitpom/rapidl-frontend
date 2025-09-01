@@ -1,0 +1,120 @@
+.circle-loader {
+  border: 8px solid rgba(0, 0, 0, 0);
+  border-left-color: #fff;
+  animation: loader-spin 0.6s infinite linear;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 50%;
+  width: 7em;
+  height: 7em;
+}
+.circle-loader.fail {
+  border-color: #d41919 !important;
+}
+.load-complete {
+  -webkit-animation: none;
+  animation: none;
+  border-color: #5cb85c;
+  transition: border 500ms ease-out;
+}
+.checkmark.draw:after {
+  animation-duration: 800ms;
+  animation-timing-function: ease;
+  animation-name: checkmark;
+  transform: scaleX(-1) rotate(135deg);
+}
+.checkmark:after {
+  opacity: 1;
+  height: 3.5em;
+  width: 1.75em;
+  transform-origin: left top;
+  border-right: 6px solid #5cb85c;
+  border-top: 6px solid #5cb85c;
+  content: "";
+  left: 1.0833333333em;
+  top: 3.5em;
+  position: absolute;
+}
+.cross {
+  opacity: 1;
+  content: "";
+  left: 47%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+.cross:before,
+.cross:after {
+  position: absolute;
+  content: " ";
+  height: 3.5em;
+  width: 6px;
+  background-color: #d41919;
+}
+.cross:before {
+  animation-duration: 800ms;
+  animation-timing-function: ease;
+  animation-name: cross0;
+  transform: translate(0, -50%) rotate(45deg);
+}
+.cross:after {
+  animation-duration: 800ms;
+  animation-timing-function: ease;
+  animation-name: cross1;
+  transform: translate(0, -50%) rotate(-45deg);
+}
+@keyframes loader-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes checkmark {
+  0% {
+    height: 0;
+    width: 0;
+    opacity: 1;
+  }
+  20% {
+    height: 0;
+    width: 1.75em;
+    opacity: 1;
+  }
+  40% {
+    height: 3.5em;
+    width: 1.75em;
+    opacity: 1;
+  }
+  100% {
+    height: 3.5em;
+    width: 1.75em;
+    opacity: 1;
+  }
+}
+@keyframes cross0 {
+  0% {
+    height: 0;
+    width: 6px;
+    opacity: 1;
+  }
+  100% {
+    height: 3.5em;
+    width: 6px;
+    opacity: 1;
+  }
+}
+@keyframes cross1 {
+  0% {
+    height: 0;
+    width: 6px;
+    opacity: 1;
+  }
+  100% {
+    height: 3.5em;
+    width: 6px;
+    opacity: 1;
+  }
+}

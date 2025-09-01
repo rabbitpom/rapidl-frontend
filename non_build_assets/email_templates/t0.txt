@@ -1,0 +1,1 @@
+Hi {{username}},\r\nWe're glad you're with us.\r\nPlease visit this URL, {{verificationlink}}, to get verified.\r\nWe hope you enjoy your stay.\r\n\r\nYou're receiving this email because your address was used to sign up for our services. If this was not you, please disregard this message.

@@ -1,0 +1,1 @@
+We've got some exciting updates from last week, take a look!\r\n{{plainnews}}\r\n\r\nTo unsubscribe visit this URL, {{amazonSESUnsubscribeUrl}} .\r\n\r\nYou're receiving this email because you signed up for our newsletter. If you no longer wish to receive these emails, please click the unsubscribe link.

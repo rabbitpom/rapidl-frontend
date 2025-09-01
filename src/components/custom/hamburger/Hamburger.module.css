@@ -1,0 +1,39 @@
+.ham {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 400ms;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.ham-active {
+    transform: rotate(45deg);
+}
+.line {
+    fill:none;
+    transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+    stroke-linecap:round;
+}
+.line-top {
+    stroke-dasharray: 40 160;
+}
+.line-middle {
+    stroke-dasharray: 40 142;
+    transform-origin: 50%;
+    transition: transform 400ms;
+}
+.line-bottom {
+    stroke-dasharray: 40 85;
+    transform-origin: 50%;
+    transition: transform 400ms, stroke-dashoffset 400ms;
+}
+.line-active-top {
+    stroke-dashoffset: -64px;
+}
+.line-active-middle {
+    transform: rotate(90deg);
+}
+.line-active-bottom {
+    stroke-dashoffset: -64px;
+}
